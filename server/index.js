@@ -1,7 +1,10 @@
 const express = require('express');
+const bodyParser = require('body-parser');
 let app = express();
 
 app.use(express.static(__dirname + '/../client/dist'));
+
+app.use(bodyParser.json());
 
 app.post('/repos', function (req, res) {
   // TODO - your code here!
@@ -18,6 +21,6 @@ app.get('/repos', function (req, res) {
 let port = 1128;
 
 app.listen(port, function() {
-  console.log(`listening on port ${port}`);
+  console.log(`Server listening at http://localhost:${port}`);
 });
 
