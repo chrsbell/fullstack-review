@@ -1,13 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import $ from 'jquery';
+// import $ from 'jquery';
+import axios from 'axios';
 import Search from './components/Search.jsx';
 import RepoList from './components/RepoList.jsx';
 
 class App extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { 
+  constructor() {
+    super();
+    this.state = {
       repos: []
     }
 
@@ -15,7 +16,16 @@ class App extends React.Component {
 
   search (term) {
     console.log(`${term} was searched`);
-    // TODO
+    // post github username to server
+    axios.post('/repos', {term: term})
+    .then((res) => {
+      // do nothing for now
+      console.log('Sent POST request!');
+    })
+    .catch((err) => {
+      console.log(err);
+      // throw err;
+    })
   }
 
   render () {
