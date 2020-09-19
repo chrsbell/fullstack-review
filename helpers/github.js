@@ -26,7 +26,7 @@ let getReposByUsername = (username) => {
     filtered = _.map(res.data, (repo) => {
       // filter necessary data from repo list
       repo = _.pick(repo, 'id', 'name', 'html_url', 'owner', 'stargazers_count', 'watchers_count')
-      // repo = _.pick(repo, 'id');
+      // owner is normally an object so change it to just the username
       repo.owner = username;
       return repo;
     });

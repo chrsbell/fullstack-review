@@ -18,11 +18,16 @@ class App extends React.Component {
     console.log(`${term} was searched`);
     // post github username to server
     axios.post('/repos', {term: term})
-    .then((res) => {
-      // do nothing for now
-      console.log('Sent POST request!');
+    .then(res => {
+      axios.get('/repos')
+      .then(res => {
+        // add repos to list
+        this.setState({
+          repos: res.data
+        })
+      })
     })
-    .catch((err) => {
+    .catch(err => {
       console.log(err);
       // throw err;
     })
