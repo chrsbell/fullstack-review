@@ -18,9 +18,10 @@ app.post('/repos', (req, res) => {
   // save the repo information in the database
   github.getReposByUsername(req.body.term)
   .then(repos => {
-    db.save(repos);
+    db.save(repos).then(() => {
+      res.sendStatus(201);
+    })
   });
-  res.sendStatus(201);
 });
 
 app.get('/repos', (req, res) => {

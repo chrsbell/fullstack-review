@@ -29,7 +29,7 @@ module.exports.save = (repos) => {
     }
     bulkOperations.push(updateDoc);
   });
-  Repo.collection.bulkWrite(bulkOperations)
+  return Repo.collection.bulkWrite(bulkOperations)
   .then(res => {
     console.log(`Inserted ${res.nUpserted} documents`);
     console.log(`Updated ${res.nModified} documents`);
