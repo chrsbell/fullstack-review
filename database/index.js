@@ -39,6 +39,11 @@ module.exports.save = (repos) => {
   })
 };
 
+// gets all repos in database as a query (make more efficient later)
+module.exports.get = () => {
+  return Repo.find({});
+}
+
 module.exports.close = () => {
   db.close();
   console.log(`\nClosing mongoose connection`);
