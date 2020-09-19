@@ -26,11 +26,9 @@ let getReposByUsername = (username) => {
     filtered = _.map(res.data, (repo) => {
       // filter necessary data from repo list
       repo = _.pick(repo, 'id', 'name', 'html_url', 'owner', 'stargazers_count', 'watchers_count')
+      // repo = _.pick(repo, 'id');
       repo.owner = username;
       return repo;
-      // add login field only from owner sub collection
-      // _.extend(repo, _.pick(repo.owner, 'login'));
-      // delete repo.owner;
     });
     return filtered;
 

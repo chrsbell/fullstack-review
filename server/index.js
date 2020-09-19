@@ -15,11 +15,10 @@ app.post('/repos', (req, res) => {
   // and get the repo information from the github API, then
   // save the repo information in the database
   github.getReposByUsername(req.body.term)
-  .then(data => {
-    console.log(data);
+  .then(repos => {
+    db.save(repos);
   });
   res.sendStatus(201);
-  // console.log(req.body);
 });
 
 app.get('/repos', (req, res) => {
@@ -30,4 +29,9 @@ let port = 1128;
 
 app.listen(port, () => {
   console.log(`Server listening at http://localhost:${port}`);
+});
+
+process.on('SIGINT', (code) => {
+  db.close();
+  process.exit();
 });
