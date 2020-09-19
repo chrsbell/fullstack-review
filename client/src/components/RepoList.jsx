@@ -11,21 +11,23 @@ let RepoList = ({ repos }) => {
           <tbody>
           <tr>
             <th>Repo Name</th>
-            <th>URL</th>
             <th>Owner</th>
             <th>Stars</th>
             <th>Watchers</th>
           </tr>
             {repos.map((repo, i) => {
               // give each field a unique key
-              let numKeys = 6;
+              let numKeys = 5;
               return (
               <tr key={i*numKeys}>
-                <td key={(i*numKeys)+1}>{repo.name}</td>
-                <td key={(i*numKeys)+2}>{repo.html_url}</td>
-                <td key={(i*numKeys)+3}>{repo.owner}</td>
-                <td key={(i*numKeys)+4}>{repo.stargazers_count}</td>
-                <td key={(i*numKeys)+5}>{repo.watchers_count}</td>
+                <td key={(i*numKeys)+1}>
+                  <a href={repo.html_url}>
+                    {repo.name}
+                  </a>
+                </td>
+                <td key={(i*numKeys)+2}>{repo.owner}</td>
+                <td key={(i*numKeys)+3}>{repo.stargazers_count}</td>
+                <td key={(i*numKeys)+4}>{repo.watchers_count}</td>
               </tr>
               );
             })}
